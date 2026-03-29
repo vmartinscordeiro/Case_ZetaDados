@@ -1,7 +1,8 @@
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-DATA_DIR = BASE_DIR / "data"
+BASE_DIR     = Path(__file__).resolve().parent.parent
+DATA_DIR     = BASE_DIR / "data"
+ARCHIVES_DIR = BASE_DIR / "Archives"
 
 BRONZE_DIR = DATA_DIR / "bronze"
 SILVER_DIR = DATA_DIR / "silver"

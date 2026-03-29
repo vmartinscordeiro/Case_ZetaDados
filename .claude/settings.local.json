@@ -14,7 +14,8 @@
       "Bash(python -c \"import pathlib; pathlib.Path\\(''debug_dt.py''\\).unlink\\(\\); print\\(''removed''\\)\")",
       "Bash(python -m main)",
       "Bash(python -m main --source csv --date 2025-12-01)",
-      "Bash(python -m main --source csv --date 2025-12-02)"
+      "Bash(python -m main --source csv --date 2025-12-02)",
+      "Bash(python main.py)"
     ]
   }
 }
