@@ -1,0 +1,67 @@
+1) Contexto
+
+Você está no projeto para um time de Dados de um e-commerce em crescimento. As áreas de Operações e Financeiro precisam de uma base única para acompanhar:
+
+receita (bruta e líquida) por dia/UF
+performance de entrega (prazo, atrasos, carriers)
+consistência de números entre pedidos e itens
+Hoje os dados chegam diariamente em arquivos e há problemas comuns: duplicidade, campos faltando, timestamps inconsistentes e pequenas mudanças de schema.
+
+Seu objetivo é construir um pipeline ponta a ponta (ingestão → transformação → camada analítica) com foco em qualidade, reprodutibilidade e modelagem.
+
+2) Dados fornecidos
+
+Bases
+
+Você receberá uma pasta (ou repositório) com arquivos CSV particionados por dia (ex.: ingest_date=YYYY-MM-DD/…):
+
+orders.csv: order_id, customer_id, order_ts, status, payment_method, total_amount, currency
+order_items.csv: order_id, product_id, quantity, unit_price, discount_amount
+shipments.csv: order_id, carrier, shipping_cost, shipped_ts, delivered_ts, delivery_status
+customers.csv: customer_id, state, city, created_ts
+products.csv: product_id, category, brand, created_ts
+3) Objetivos (o que construir)
+
+3.1 Camadas (obrigatório)
+
+Implemente 3 camadas (podem ser pastas e/ou schemas):
+
+Bronze (raw): dados ingeridos “como vieram”, com metadados de carga
+Silver (clean): dados limpos/normalizados (tipos, dedup, validações)
+Gold (analytics): tabelas prontas para consumo (fato/dimensões e métricas)
+Utilize Python para desenvolver as bases de todos os schemas.
+
+3.2 Tabelas Gold (obrigatório)
+
+Crie:
+
+A) fact_orders (1 linha por order_id) com, no mínimo:
+
+order_id, customer_id, order_date (data), order_ts
+gross_amount (bruto), discount_total, net_amount
+payment_method, status_final
+carrier, shipping_cost, shipped_ts, delivered_ts
+delivery_time_hours (se houver shipped e delivered)
+is_late (ex.: atraso se delivery_time_hours > 72 — pode propor outra regra)
+B) dim_customers
+
+customer_id, state, city, created_ts
+C) dim_products
+
+product_id, category, brand, created_ts
+D) fact_order_items (opcional, mas recomendado)
+
+order_id, product_id, quantity, unit_price, discount_amount, item_net_amount
+4) Entregáveis (o que enviar)
+
+Pasta compactada com:
+
+pipeline completo: pastas bronze/silver/gold, tabelas em .csv ou .xlsx
+dependências (requirements)
+códigos de ETL em formato .py ou .ipynb
+documentação da arquitetura: diagrama do modelo (software de sua escolha). Enviar em .jpg, .png ou .pdf
+Você terá até 20 minutos para apresentar os códigos, diagrama e outros materiais que achar necessário. O formato da apresentação fica ao seu critério.
+
+ 
+
+Precisamos que você envie a pasta compactada com a resolução do case até domingo dia 29/03 às 23h, copiando todos que estão em cópia desse email. Caso esse prazo não seja respeitado, excluiremos você do processo automaticamente.
